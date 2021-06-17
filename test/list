@@ -1,0 +1,6 @@
+dom = yaml.loadDom input-yaml, version='1.3', feature=['+simple-plain', '+report-comments'], schema='Core-1.3'
+core-object = dom.toNative
+dom.setSchema 'https://ingy.net/evil.yamls'
+evil-object = dom.toNative
+dom.setSchema 'flow-quoted'
+output-yaml = dom.dump
