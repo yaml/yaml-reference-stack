@@ -1,4 +1,4 @@
-Schema = require '../schema'
+Schema = require('../schema')
 
 class Schema.Core12 extends Schema
   root: '+node'
@@ -6,6 +6,16 @@ class Schema.Core12 extends Schema
   type:
     '+node':
       any1: [ '+str', '+val', '+map', '+list' ]
+
+    '+map':
+      kind: 'Map'
+      pair: [
+        ['+str', '+node']
+      ]
+
+    '+list':
+      kind: 'Seq'
+      list: '+node'
 
     '+value':
       kind: 'Val'
@@ -33,19 +43,8 @@ class Schema.Core12 extends Schema
        ,
         like: /^(\.nan|\.NaN|\.NAN)$/
         func: 'nan'
+       ,
+        else: '+str'
       ]
-
-    '+str': kind: 'Str'
-
-    '+map':
-      kind: 'Map'
-      pair: [
-        ['+str', '+node']
-      ]
-
-    '+list':
-      kind: 'Seq'
-      list: '+node'
 
 module?.exports = Schema.Core12
-

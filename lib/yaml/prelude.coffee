@@ -1,7 +1,7 @@
 global = this
 
 global.say = (args...)->
-  console.log args...
+  console.log(args...)
 
 module?.exports = {_}
 

@@ -1,9 +1,9 @@
-Base = require './base'
+Base = require('./base')
 
 class YamlConstructor extends Base
   open: (input)->
-    Composer = require './composer'
-    @composer = new Composer(@config)
+    Composer = require('./composer')
+    @composer = @xxx new Composer(@config)
       .open(input)
     @schema = @config.loadSchema()
     @library = @config.loadLibrary()
@@ -25,23 +25,21 @@ class YamlConstructor extends Base
   kind:
     Mapping: 'Map'
     Sequence: 'Seq'
-    String: 'Str'
     Value: 'Val'
 
   constructNode: (node, type)->
-    type = @validateNode(node, type)
+    [type, error] = @schemaInfoForNode(node, type)
     kind = @kind[node.constructor.name]
     switch kind
       when 'Map' then @constructMapping(node, type)
       when 'Seq' then @constructSequence(node, type)
       when 'Val' then @constructValue(node, type)
-      when 'Str' then @constructString(node, type)
       else throw kind
 
   constructMapping: (node, type)->
     mapping = {}
     for pair in node.pair
-      [keyType, valType] = @validatePair(pair)
+      [keyType, valType, error] = @schemaInfoForPair(pair)
       key = @constructNode(pair.key, keyType)
       val = @constructNode(pair.value, valType)
       mapping[key] = val
@@ -50,15 +48,15 @@ class YamlConstructor extends Base
   constructSequence: (node, type)->
     sequence = []
     for elem in node.list
-      sequence.push(@constructNode elem)
+      sequence.push(@constructNode(elem))
     return sequence
 
   constructValue: (node, type)->
     value = node.value
     if value.match /^-?\d+$/
-      value = Number value
+      value = Number(value)
     else if value.match /^-?\d+\.\d+$/
-      value = parseFloat value
+      value = parseFloat(value)
     else if value == 'true'
       value = true
     else if value == 'false'
@@ -70,8 +68,8 @@ class YamlConstructor extends Base
   constructString: (node, type)->
     return node.value
 
-  validateNode: ->
+  schemaInfoForNode: (node, type)-> []
 
-  validatePair: -> []
+  schemaInfoForPair: -> []
 
 module?.exports = YamlConstructor

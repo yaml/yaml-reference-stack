@@ -1,4 +1,4 @@
-Util = require './util'
+Util = require('./util')
 
 class YamlConfig extends Util
   @keys: [
@@ -10,7 +10,7 @@ class YamlConfig extends Util
 
   constructor: (config={})->
     super()
-    @update config
+    @update(config)
 
     @version ?= '1.2'
     @feature ?= []
@@ -25,7 +25,7 @@ class YamlConfig extends Util
 
   update: (o)->
     for k, v of o
-      @set k, v
+      @set(k, v)
 
   loadSchema: ->
     if typeof(@schema) == 'string'

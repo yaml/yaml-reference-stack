@@ -1,8 +1,8 @@
-Base = require './base'
+Base = require('./base')
 
 class YamlLoader extends Base
   open: (input)->
-    Constructor = require './constructor'
+    Constructor = require('./constructor')
     @constructor_ = new Constructor(@config)
       .open(input)
     return @
@@ -13,14 +13,14 @@ class YamlLoader extends Base
   load: ->
     object = @next()
     if object == undefined
-      @error 'No YAML documents in stream'
+      @error('No YAML documents in stream')
     if @next() != undefined
-      @error 'More than one YAML document in stream'
+      @error('More than one YAML document in stream')
     return object
 
   loadAll: ->
     all = []
-    while (object = @next) != undefined
+    while (object = @next()) != undefined
       all.push(object)
     return all
 

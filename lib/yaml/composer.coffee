@@ -3,7 +3,7 @@ Dom = require('./dom')
 
 class YamlComposer extends Base
   open: (input)->
-    Parser = require './parser'
+    Parser = require('./parser')
     @parser = new Parser(@config)
       .open(input)
     return @
@@ -53,14 +53,13 @@ class YamlComposer extends Base
     return
 
   do_scalar: (event)->
-    if event.style == 'plain'
-      @add new Dom.Value event.value
-    else
-      @add new Dom.String event.value
+    node = @add new Dom.Value(event.value)
+    if event.style != 'plain'
+      node.string = true
     return
 
   push: (o)->
-    @stack.push o
+    @stack.push(o)
     return
 
   pop: ->

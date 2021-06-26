@@ -1,6 +1,7 @@
 class YamlInput
   constructor: (args)->
-    args = string: args if typeof(args) == 'string'
+    if typeof(args) == 'string'
+      args = string: args
     {@string, @file, @handle} = args
 
 module?.exports = YamlInput

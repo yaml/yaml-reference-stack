@@ -59,11 +59,6 @@ class Dom.Sequence
     @list.push(node)
     return
 
-class Dom.String
-  constructor: (node)->
-    @value = node
-    return
-
 class Dom.Value
   constructor: (node)->
     @value = node

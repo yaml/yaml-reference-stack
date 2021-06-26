@@ -8,7 +8,7 @@ type:
     kind: Val
     case:
     - like: /^(|~|null|Null|NULL)/
-      func: null'
+      func: null
     - like: /^(true|True|TRUE|false|False|FALSE)$/
       func: bool
     - like: /^[-+]?[0-9]+$/

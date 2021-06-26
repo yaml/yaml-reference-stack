@@ -1,4 +1,4 @@
-Library = require './library'
+Library = require('./library')
 
 class YamlStdLib extends Library
   @function:

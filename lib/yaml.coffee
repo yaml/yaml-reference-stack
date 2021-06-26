@@ -1,27 +1,23 @@
-global.ccc = (o)->
-  console.dir o, {depth: 10}
-  process.exit 1
-
-Base = require './yaml/base'
+Base = require('./yaml/base')
 
 class Yaml extends Base
   load: (@input, {@schema}={})->
-    Input = require './yaml/input'
+    Input = require('./yaml/input')
     if not (@input instanceof Input)
       @input = new Input(@input)
 
-    Loader = require './yaml/loader'
-    @loader = new Loader @config
+    Loader = require('./yaml/loader')
+    @loader = new Loader(@config)
     @loader.open(@input)
 
     return @loader.load()
 
   dump: (node...)->
-    Output = require './yaml/output'
+    Output = require('./yaml/output')
     @output = new Output
 
-    Dumper = require './yaml/dumper'
-    @dumper = new Dumper @config
+    Dumper = require('./yaml/dumper')
+    @dumper = new Dumper(@config)
     @dumper.open(@output)
 
     return @dumper.dumpAll(node)
@@ -32,7 +28,7 @@ class Yaml extends Base
     if config.constructor.name == 'YamlConfig'
       @config = config
     else
-      @config.update config
+      @config.update(config)
     return @
 
 yaml = new Yaml

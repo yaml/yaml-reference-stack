@@ -1,4 +1,4 @@
-Base = require './base'
+Base = require('./base')
 
 class YamlReader extends Base
   open: (@input)->

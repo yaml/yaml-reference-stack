@@ -1,5 +1,5 @@
-Util = require './util'
-Config = require './config'
+Util = require('./util')
+Config = require('./config')
 
 class Base extends Util
   constructor: (config={})->

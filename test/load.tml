@@ -1,0 +1,11 @@
+#!/usr/bin/env testml
+
+*yaml.load.inspect == *inspect
+
+
+=== Basic Sequence
+--- yaml
+- foo
+- bar
+--- inspect
+[ 'foo', 'bar' ]
