@@ -3,7 +3,7 @@ Base = require('./base')
 class YamlConstructor extends Base
   open: (input)->
     Composer = require('./composer')
-    @composer = @xxx new Composer(@config)
+    @composer = new Composer(@config)
       .open(input)
     @schema = @config.loadSchema()
     @library = @config.loadLibrary()

@@ -9,3 +9,21 @@
 - bar
 --- inspect
 [ 'foo', 'bar' ]
+
+=== Basic Mapping
+--- yaml
+foo: thing
+bar: 123
+--- inspect
+{ foo: 'thing', bar: 123 }
+
+=== Scalar types
+--- yaml
+- string
+- 0
+- -1.23
+- true
+- false
+- null
+--- inspect
+[ 'string', 0, -1.23, true, false, null ]

@@ -1,0 +1,14 @@
+from: ++core
+
+++map:
+  pair:
+    ++str: ++node
+
+++val:
+  case:
+  - /{dash}? {pdig}{dig}*/: ++int
+  - - /{dash}? {pdig} ({dot} {dig}* {pdig})? (e {sign} {pdig} {dig}*)?/
+    - ++float
+  - <true false>: - ++bool
+  - <null '~' ''>: ++null
+  - ++str

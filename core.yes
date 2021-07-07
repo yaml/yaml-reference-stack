@@ -1,0 +1,24 @@
+++node:
+- ++map
+- ++seq
+- ++val
+
+++map:
+  kind: Map
+  pair: {++node: ++node}
+
+++seq:
+  kind: Seq
+  list: ++node
+
+++val:
+  kind: Val
+
+++str:
+  case:
+  - /? {yaml-non-printable}: $double
+  - / {hash}: $single
+  - /? {colon}{spc}: $single
+  - / {non-empty-text-line}{3,}: $literal
+  - / {yaml-syntax-char}: $single
+  - $plain

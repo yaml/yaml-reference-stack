@@ -1,16 +1,12 @@
 #!/bin/sh
 
-cat <<'___' | coffee -s
-require "ingy-prelude"
-
+coffee -s <<'___'
 yaml = require "./lib/yaml"
 
-object = yaml.load '''
+yaml.constructor::xxx yaml.load '''
 ---
 foo: 'bar'
 baz: [42, true, -1.23, null]
 ...
 '''
-
-console.dir object, {depth:10}
 ___

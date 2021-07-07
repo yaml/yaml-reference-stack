@@ -1,0 +1,19 @@
+base: ++core
+root: ++node
+show: ++node ++map ...
+
+++map:
+  pair:
+    ++str: ++node
+
+++val:
+  case:
+  - when:
+      like: /{dash}? {pdig}{dig}*/
+    then:
+      type: ++int
+  - - /{dash}? {pdig} ({dot} {dig}* {pdig})? (e {sign} {pdig} {dig}*)?/
+    - ++float
+  - <true false>: - ++bool
+  - <null '~' ''>: ++null
+  - ++str

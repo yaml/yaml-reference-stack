@@ -1,0 +1,11 @@
+base: ./base
+
+root:
+  pair:
+  - foo:
+      kind: Seq
+      case:
+      - - kind: Val
+        - make: words
+  - bar: ++str
+  - +str: ++node
