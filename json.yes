@@ -9,6 +9,6 @@ from: ++core
   - /{dash}? {pdig}{dig}*/: ++int
   - - /{dash}? {pdig} ({dot} {dig}* {pdig})? (e {sign} {pdig} {dig}*)?/
     - ++float
-  - <true false>: - ++bool
+  - <true false>: ++bool
   - <null '~' ''>: ++null
   - ++str
